@@ -311,16 +311,119 @@ def main(question,api_key):
             
 
             DOCUMENT_PROMPT = """
-            {page_content}
-            source : {href}
+            Description: {page_content}
+            href : {href}
+            Title: {Title}
+            Test type: {Test Type}
+            Remote Testing: {Remote_testing}
+            Adaptive: {Adaptive}
+            Assessment length: {Assessment length}
             """
-
             QUESTION_PROMPT = """
             Given the user query {question} and the relevant documents {summaries} provide the final answer to user.
             **DO NOT MAKE UP STUFF**. Just stick to the information provided in {summaries} and answer the user query
-            **STRICLTLY USE ALL THE {summaries} in your answer:
+            **MENTION ALL THE {summaries} in your answer.
+            First step is to **extract relevant information** from the user prompt. 
+            Reformulates user queries about 'recruitment test assessments' for hiring as stored in our company database.
+            In particular try to answer these questions from the user query:
             
-            FINAL ANSWER:
+                                1. What kind of test is the user looking for from this list:
+            
+                                   'A': 'Ability and Aptitude'
+                                   'B': 'Biodata and Situational judgement'
+                                   'C': 'Competencies', 'D': 'Developement & 360'
+                                   'E': 'Assessment Exercises'
+                                   'K': 'Knowledge and skills'
+                                   'P': 'Personality and Behaviour'
+                                   'S': 'Simulations'
+            
+            
+                                2. What kind of job level should the test be based on:
+            
+                                   'Director',
+                                   'Entry-Level',
+                                   'Executive',
+                                   'Front Line Manager',
+                                   'General Population',
+                                   'Graduate',
+                                   'Manager',
+                                   'Mid-Professional',
+                                   'Professional Individual Contributor',
+                                   'Supervisor',
+                                   'Director',
+                                   'Entry-Level',
+                                   'Executive',
+                                   'Front Line Manager',
+                                   'General Population',
+                                   'Graduate',
+                                   'Manager',
+                                   'Mid-Professional',
+                                   'Professional Individual Contributor',
+                                   'Supervisor'
+            
+                                3. Is there a specific language that the user wants:
+            
+                                     'Arabic',
+                                     'Chinese Simplified',
+                                     'Chinese Traditional',
+                                     'Czech',
+                                     'Danish',
+                                     'Dutch',
+                                     'English (Australia)',
+                                     'English (Canada)',
+                                     'English (South Africa)',
+                                     'English (USA)',
+                                     'English International',
+                                     'Estonian',
+                                     'Finnish',
+                                     'Flemish',
+                                     'French',
+                                     'French (Belgium)',
+                                     'French (Canada)',
+                                     'German',
+                                     'Greek',
+                                     'Hungarian',
+                                     'Icelandic',
+                                     'Indonesian',
+                                     'Italian',
+                                     'Japanese',
+                                     'Korean',
+                                     'Latin American Spanish',
+                                     'Latvian',
+                                     'Lithuanian',
+                                     'Malay',
+                                     'Norwegian',
+                                     'Polish',
+                                     'Portuguese',
+                                     'Portuguese (Brazil)',
+                                     'Romanian',
+                                     'Russian',
+                                     'Serbian',
+                                     'Slovak',
+                                     'Spanish',
+                                     'Swedish',
+                                     'Thai',
+                                     'Turkish',
+                                     'Vietnamese'
+            
+                                4.What is the length of the test the user is looking for?
+            
+                               
+            
+            
+            Now extract relevant documents from {summaries} which **MATCHES THE USER QUERY AND WHICH MATCHES THE ABOVE ANSWERS**.
+            **DO NOT MAKE UP STUFF**. Just stick to the information provided in summaries and answer the user query
+            The output format should be **STRICTLY JSON FILES AS FOLLOWS**:
+            
+            href : <href of the assessment>
+            Title: <Title of the assessment>
+            Test type: <Test Type of the assessment>
+            Remote Testing: <Remote_testing>
+            Adaptive: <Adaptive: yes/No>
+            Assessment length: <Assessment length>
+            Description: <document content of the extracted document>
+            
+            FINAL ANSWERS:
             """
 
             document_prompt = PromptTemplate.from_template(DOCUMENT_PROMPT)
