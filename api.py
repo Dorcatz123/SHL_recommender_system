@@ -10,8 +10,8 @@ class API(BaseModel):
     api_key: str
     
 @app.post("/ask")
-def ask(query: Query, api_key: API.api_key ):
-    answer = main(query.question, API.api_key)
+def ask(query: Query, api_key: API ):
+    answer = main(query.question, api_key.api_key)
     return {"question": query.question, "answer": answer}
 
 
