@@ -1,3 +1,9 @@
 tiktoken 
 langchain 
 langchain_openai
+openai
+langchain_community
+numpy
+faiss-cpu
+pandas
+python-dotenv
