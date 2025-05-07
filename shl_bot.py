@@ -247,7 +247,7 @@ def main(question):
                     4.What is the length of the test the user is looking for?
                     
                     Original query:
-                    '{user_query}'
+                    '{question}'
                                        
                     Based on the above answers you obtain from the user prompt, structure your output STRICTLY IN **JSON** form:
                     
@@ -256,7 +256,7 @@ def main(question):
                     Job level : <Job level>
                     Language : <Language>
                     Assessment time : <Assessment time>
-                    Description: <First determine whether the '{user_query}' is a job posting or an individual recruiter. Then based on this information
+                    Description: <First determine whether the '{question}' is a job posting or an individual recruiter. Then based on this information
                                        Explain in briefly and clearly without missing any relevant details **ONLY** the job requirements or what the recruiter wants.> """
 
 
