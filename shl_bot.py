@@ -8,7 +8,7 @@ Original file is located at
 """
 
 
-def main():
+def main(api_key):
             from langchain.chains import RetrievalQAWithSourcesChain
             from langchain.chat_models import ChatOpenAI
             from langchain_core.documents import Document
@@ -21,7 +21,7 @@ def main():
             from langchain.chains import RetrievalQA
             import os
 
-            api_key = input("Please input your api-key")
+            # api_key = input("Please input your api-key")
 
             dir_path = os.path.dirname(os.path.realpath(__file__))
             data_file_path = os.path.join(dir_path, 'individual_SHL_assessment_with_description.pkl')
