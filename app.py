@@ -25,7 +25,7 @@ if submitted:
         st.warning("Please enter a question.")
     with st.spinner("Searching and generating answer..."):
         try:
-            answer = main(user_query)
+            answer = main(user_query,api_key)
             st.success("✅ Answer")
             st.write(answer)
         except Exception as e:
