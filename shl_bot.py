@@ -78,7 +78,7 @@ def main(question):
 
             final_data = data + data2
 
-            docs = [Document(page_content=i['Description'], metadata={'href':i['href']}) for i in final_data if str(type(i))=='<class 'dict'>]
+            docs = [Document(page_content=i['Description'], metadata={'href':i['href']}) for i in final_data if str(type(i))=="<class 'dict'>"]
 
 
 
