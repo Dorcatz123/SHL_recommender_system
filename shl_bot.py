@@ -10,12 +10,12 @@ Original file is located at
 
 def main(question):
             from langchain.chains import RetrievalQAWithSourcesChain
-            from langchain.chat_models import ChatOpenAI
+            from langchain_openai.chat_models import ChatOpenAI
             from langchain_core.documents import Document
             from dotenv import load_dotenv, find_dotenv
             from dotenv import load_dotenv
             from langchain_openai import OpenAI
-            from langchain.vectorstores import FAISS
+            from langchain_community.vectorstores import FAISS
             from langchain_openai import OpenAIEmbeddings
             from langchain.prompts import PromptTemplate
             from langchain.chains import RetrievalQA
