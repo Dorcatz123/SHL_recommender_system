@@ -13,6 +13,6 @@ def ask(query: Query):
     return {"question": query.question, "answer": answer}
 
 
-@app.route("/health")
+@app.get("/health")
 def hello():
     return "healthy!"
