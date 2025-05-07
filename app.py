@@ -33,7 +33,7 @@ if submitted:
            data = {"question": user_query, "api_key": api_key}
            response = requests.post(url, json=data)
 
-            answer = requests.json()
+            answer = response.json()
             st.success("✅ Answer")
             st.write(answer)
         except Exception as e:
