@@ -1,1 +1,3 @@
-langchain
+tiktoken 
+langchain 
+langchain_openai
