@@ -6,10 +6,11 @@ app = FastAPI()
 
 class Query(BaseModel):
     question: str
-
+class API(BaseModel):
+    api_key: str
 @app.post("/ask")
-def ask(query: Query):
-    answer = main(query.question)
+def ask(query: Query, api_key: API.api_key ):
+    answer = main(query.question, API.api_key)
     return {"question": query.question, "answer": answer}
 
 
