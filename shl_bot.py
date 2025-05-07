@@ -311,7 +311,7 @@ def main(question,api_key):
             
 
             DOCUMENT_PROMPT = """
-            Description: {page_content}
+            {page_content}
             href : {href}
             Title: {Title}
             Test type: {Test Type}
