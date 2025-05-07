@@ -1,5 +1,8 @@
 import streamlit as st
-from shl_bot import main  # Your RAG logic
+#from shl_bot import main  # Your RAG logic
+import requests
+
+url = "https://shl-recommender-system-be7b.onrender.com/ask"
 
 st.set_page_config(page_title="SHL Recommender system", layout="centered")
 
@@ -13,6 +16,8 @@ st.markdown(
 
 api_key = st.text_input("🔑 OpenAI API Key", type="password")
 
+
+
 # Input form
 with st.form("rag_form"):
     user_query = st.text_input("❓ Your question", placeholder="Ask me something...")
@@ -25,7 +30,10 @@ if submitted:
         st.warning("Please enter a question.")
     with st.spinner("Searching and generating answer..."):
         try:
-            answer = main(user_query,api_key)
+           data = {"question": user_query, "api_key": api_key}
+           response = requests.post(url, json=data)
+
+            answer = requests.json()
             st.success("✅ Answer")
             st.write(answer)
         except Exception as e:
