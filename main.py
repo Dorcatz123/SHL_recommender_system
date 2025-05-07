@@ -7,14 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1T5Qt-dZYylle34jKyDbk09o1apHEruEW
 """
 
-!pip install pinecone-client tiktoken langchain langchain_openai
-!pip install --upgrade openai
-!pip install langchain_community
-!pip install numpy
-!pip install faiss-cpu
-!pip install pandas
-!pip install python-dotenv
-
 
 def main():
             from langchain.chains import RetrievalQAWithSourcesChain
