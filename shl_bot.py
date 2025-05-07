@@ -21,8 +21,8 @@ def main(question):
             from langchain.chains import RetrievalQA
             import os
 
-            api_key = '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'
-
+            os.environ["OPENAI_API_KEY"] = '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'
+            
             dir_path = os.path.dirname(os.path.realpath(__file__))
             data_file_path = os.path.join(dir_path, 'individual_SHL_assessment_with_description.pkl')
             data2_file_path = os.path.join(dir_path, 'prepacked_SHL_assessment_with_description.pkl')
@@ -302,10 +302,10 @@ def main(question):
 
 
 
-            embeddings = OpenAIEmbeddings(model="text-embedding-3-small", api_key=api_key)
+            embeddings = OpenAIEmbeddings(model="text-embedding-3-small", api_key=os.environ["OPENAI_API_KEY"] )
             vector_store = FAISS.from_documents(docs, embeddings)
 
-            # llm = OpenAI(api_key=api_key)
+            # llm = OpenAI(api_key=os.environ["OPENAI_API_KEY"] )
             retriever = vector_store.as_retriever(search_kwargs={"k": 10})
 
             
