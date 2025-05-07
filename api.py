@@ -11,7 +11,7 @@ class Query(BaseModel):
 @app.post("/ask")
 def ask(payload: Query):
     answer = main(payload.question, payload.api_key)
-    return {"question": query.question, "answer": answer}
+    return {"question": payload.question, "answer": answer}
 
 
 @app.get("/health")
