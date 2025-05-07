@@ -78,7 +78,7 @@ def main(question,api_key):
 
             final_data = data + data2
 
-            docs = [Document(page_content=i['Description'], metadata={'href':i['href']}) for i in final_data if str(type(i))=="<class 'dict'>"]
+            docs = [Document(page_content=i['Description'], metadata={'href':i['href'],'Title': i['Title'],'Test Type':i['Test_type'],'Remote_testing':i['Remote testing'],'Adaptive':i['Adaptive'],'Assessment length': i['Assessmenet Length']   }) for i in final_data if str(type(i))=="<class 'dict'>"]
 
 
 
