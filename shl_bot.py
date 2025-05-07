@@ -413,6 +413,7 @@ def main(question,api_key):
             
             Now extract relevant documents from {summaries} which **MATCHES THE USER QUERY AND WHICH MATCHES THE ABOVE ANSWERS**.
             **DO NOT MAKE UP STUFF**. Just stick to the information provided in summaries and answer the user query
+            **TRY TO RECOMMEND AS MANY ASSESSMENTS AS POSSIBLE**
             The output format should be **STRICTLY JSON FILES AS FOLLOWS**:
             
             href : <href of the assessment>
