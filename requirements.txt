@@ -7,3 +7,6 @@ numpy
 faiss-cpu
 pandas
 python-dotenv
+fastapi
+streamlit
+pydantic
