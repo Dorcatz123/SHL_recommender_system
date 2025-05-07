@@ -8,7 +8,7 @@ Original file is located at
 """
 
 
-def main(api_key):
+def main(api_key,question):
             from langchain.chains import RetrievalQAWithSourcesChain
             from langchain.chat_models import ChatOpenAI
             from langchain_core.documents import Document
@@ -162,108 +162,102 @@ def main(api_key):
 
             prompt = f"""
             
-            You are a smart assistant that reformulates user queries about 'recruitment test assessments' for hiring as stored in our company database.
-            Your job is to **extract relevant information** from the user prompt. In particular try to answer these questions:
-            
-            1. What kind of test is the user looking for from this list:
-            
-               'A': 'Ability and Aptitude'
-               'B': 'Biodata and Situational judgement'
-               'C': 'Competencies', 'D': 'Developement & 360'
-               'E': 'Assessment Exercises'
-               'K': 'Knowledge and skills'
-               'P': 'Personality and Behaviour'
-               'S': 'Simulations'
-            
-            
-            2. What kind of job level should the test be based on:
-            
-               'Director',
-               'Entry-Level',
-               'Executive',
-               'Front Line Manager',
-               'General Population',
-               'Graduate',
-               'Manager',
-               'Mid-Professional',
-               'Professional Individual Contributor',
-               'Supervisor',
-               'Director',
-               'Entry-Level',
-               'Executive',
-               'Front Line Manager',
-               'General Population',
-               'Graduate',
-               'Manager',
-               'Mid-Professional',
-               'Professional Individual Contributor',
-               'Supervisor'
-            
-            3. Is there a specific language that the user wants:
-            
-                 'Arabic',
-                 'Chinese Simplified',
-                 'Chinese Traditional',
-                 'Czech',
-                 'Danish',
-                 'Dutch',
-                 'English (Australia)',
-                 'English (Canada)',
-                 'English (South Africa)',
-                 'English (USA)',
-                 'English International',
-                 'Estonian',
-                 'Finnish',
-                 'Flemish',
-                 'French',
-                 'French (Belgium)',
-                 'French (Canada)',
-                 'German',
-                 'Greek',
-                 'Hungarian',
-                 'Icelandic',
-                 'Indonesian',
-                 'Italian',
-                 'Japanese',
-                 'Korean',
-                 'Latin American Spanish',
-                 'Latvian',
-                 'Lithuanian',
-                 'Malay',
-                 'Norwegian',
-                 'Polish',
-                 'Portuguese',
-                 'Portuguese (Brazil)',
-                 'Romanian',
-                 'Russian',
-                 'Serbian',
-                 'Slovak',
-                 'Spanish',
-                 'Swedish',
-                 'Thai',
-                 'Turkish',
-                 'Vietnamese'
-            
-            4.What is the length of the test the user is looking for?
-            
-            Original query:
-            "{user_query}"
-            
-            
-            Based on the above answers you obtain from the user prompt, structure your output STRICTLY IN **JSON** form:
-            
-            
-            Test Type : <Test type>
-            Job level : <Job level>
-            Language : <Language>
-            Assessment time : <Assessment time>
-            Description: <First determine whether the "{user_query}" is a job posting or an individual recruiter. Then based on this information
-                               Explain in briefly and clearly without missing any relevant details **ONLY** the job requirements or what the recruiter wants.>
-            
-            
-            
-            
-            """
+                    You are a smart assistant that reformulates user queries about 'recruitment test assessments' for hiring as stored in our company database.
+                    Your job is to **extract relevant information** from the user prompt. In particular try to answer these questions:
+                    
+                    1. What kind of test is the user looking for from this list:
+                    
+                       'A': 'Ability and Aptitude'
+                       'B': 'Biodata and Situational judgement'
+                       'C': 'Competencies', 'D': 'Developement & 360'
+                       'E': 'Assessment Exercises'
+                       'K': 'Knowledge and skills'
+                       'P': 'Personality and Behaviour'
+                       'S': 'Simulations'
+                    
+                    
+                    2. What kind of job level should the test be based on:
+                    
+                       'Director',
+                       'Entry-Level',
+                       'Executive',
+                       'Front Line Manager',
+                       'General Population',
+                       'Graduate',
+                       'Manager',
+                       'Mid-Professional',
+                       'Professional Individual Contributor',
+                       'Supervisor',
+                       'Director',
+                       'Entry-Level',
+                       'Executive',
+                       'Front Line Manager',
+                       'General Population',
+                       'Graduate',
+                       'Manager',
+                       'Mid-Professional',
+                       'Professional Individual Contributor',
+                       'Supervisor'
+                    
+                    3. Is there a specific language that the user wants:
+                    
+                         'Arabic',
+                         'Chinese Simplified',
+                         'Chinese Traditional',
+                         'Czech',
+                         'Danish',
+                         'Dutch',
+                         'English (Australia)',
+                         'English (Canada)',
+                         'English (South Africa)',
+                         'English (USA)',
+                         'English International',
+                         'Estonian',
+                         'Finnish',
+                         'Flemish',
+                         'French',
+                         'French (Belgium)',
+                         'French (Canada)',
+                         'German',
+                         'Greek',
+                         'Hungarian',
+                         'Icelandic',
+                         'Indonesian',
+                         'Italian',
+                         'Japanese',
+                         'Korean',
+                         'Latin American Spanish',
+                         'Latvian',
+                         'Lithuanian',
+                         'Malay',
+                         'Norwegian',
+                         'Polish',
+                         'Portuguese',
+                         'Portuguese (Brazil)',
+                         'Romanian',
+                         'Russian',
+                         'Serbian',
+                         'Slovak',
+                         'Spanish',
+                         'Swedish',
+                         'Thai',
+                         'Turkish',
+                         'Vietnamese'
+                    
+                    4.What is the length of the test the user is looking for?
+                    
+                    Original query:
+                    '{user_query}'
+                                       
+                    Based on the above answers you obtain from the user prompt, structure your output STRICTLY IN **JSON** form:
+                    
+                    
+                    Test Type : <Test type>
+                    Job level : <Job level>
+                    Language : <Language>
+                    Assessment time : <Assessment time>
+                    Description: <First determine whether the '{user_query}' is a job posting or an individual recruiter. Then based on this information
+                                       Explain in briefly and clearly without missing any relevant details **ONLY** the job requirements or what the recruiter wants.> """
 
 
 
@@ -278,33 +272,33 @@ def main(api_key):
             # client = AsyncOpenAI()
             # completion = await client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Hello world"}])
 
-            completion = openai.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    },
-                ],
-            )
-            response = completion.choices[0].message.content
-            print(response)
+            # completion = openai.chat.completions.create(
+            #     model="gpt-4",
+            #     messages=[
+            #         {
+            #             "role": "user",
+            #             "content": prompt,
+            #         },
+            #     ],
+            # )
+            # response = completion.choices[0].message.content
+            # print(response)
 
-            import json
-            json_dict = json.loads(response)
+            # import json
+            # json_dict = json.loads(response)
 
             # print(json_dict)
 
-            import tiktoken
-            encoder = tiktoken.get_encoding("cl100k_base")
+            # import tiktoken
+            # encoder = tiktoken.get_encoding("cl100k_base")
 
-            #text-embedding-ada-002 is the 2nd gen embedding models   embedding dimension= 1536
+            # #text-embedding-ada-002 is the 2nd gen embedding models   embedding dimension= 1536
 
-            tokens_per_docs = [len(encoder.encode(doc.page_content)) for doc in docs]
+            # tokens_per_docs = [len(encoder.encode(doc.page_content)) for doc in docs]
 
-            total_tokens = sum(tokens_per_docs)
-            cost_per_1000_tokens = 0.0001
-            cost = (total_tokens / 1000) * cost_per_1000_tokens
+            # total_tokens = sum(tokens_per_docs)
+            # cost_per_1000_tokens = 0.0001
+            # cost = (total_tokens / 1000) * cost_per_1000_tokens
 
 
 
@@ -314,15 +308,11 @@ def main(api_key):
             # llm = OpenAI(api_key=api_key)
             retriever = vector_store.as_retriever(search_kwargs={"k": 10})
 
-            retriever.invoke(
-                f"{json_dict['Description']}",
-                )
-
-
+            
 
             DOCUMENT_PROMPT = """
             {page_content}
-            href : {href}
+            source : {href}
             """
 
             QUESTION_PROMPT = """
@@ -349,7 +339,7 @@ def main(api_key):
 
                             )
 
-            return  qa_with_sources(input("Type here"))
+            return  qa_with_sources(question)
 
 
 
