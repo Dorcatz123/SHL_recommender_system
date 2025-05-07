@@ -16,3 +16,9 @@ def ask(query: Query):
 @app.get("/health")
 def hello():
     return "healthy!"
+
+
+@app.get("/")
+def root():
+    return {"message": "RAG API is running. Use /ask to POST questions."}
+
