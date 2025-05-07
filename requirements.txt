@@ -9,4 +9,3 @@ pandas
 python-dotenv
 fastapi
 streamlit
-pydantic
